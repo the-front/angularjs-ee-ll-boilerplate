@@ -3,16 +3,19 @@ define(function(require) {
 
   var angular = require('angular');
 
+  require('uiRouter');
+  require('ocLazyLoad');
+
   // angular module definition
   return angular.module(
     // module name
-    'core',
+    'core.lazy.load',
 
     // module dependencies
     [
-      require('./lazy/load/package').name,
-      require('./main/package').name,
-      require('./home/package').name
+      'ui.router',
+
+      'oc.lazyLoad'
     ]
   );
 

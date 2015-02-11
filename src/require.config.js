@@ -24,6 +24,9 @@ require({
       'vendor/angular.js/1.3.11/angular-animate.min'
     ],
 
+    ocLazyLoad: [
+      'vendor/ocLazyLoad/0.5.2/ocLazyLoad.min'
+    ],
 
     uiBootstrap: [
       'vendor/angular-ui/bootstrap/0.12.0/ui-bootstrap-tpls.min'
@@ -84,6 +87,10 @@ require({
     },
 
     'uiRouter': {
+      deps: ['angular']
+    },
+
+    'ocLazyLoad': {
       deps: ['angular']
     },
 
