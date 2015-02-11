@@ -1,0 +1,37 @@
+<div class="container">
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+<p><a href="#/">Back to Home</a> | Page name: {{vm.pageName}}</p>
+</div>
+
+<!--<div class="row"><h3>Angularjs Boilerplate Project</h3></div>-->
+<div class="row">&nbsp;</div>
+
+<!-- @begin: tabs -->
+<div class="row">
+  <tabset>
+    <tab heading="FrontEnd">
+      <div
+        class="container"
+        ng-include="'app/modules/pages/about/templates/frontend.html'"></div>
+    </tab>
+    <tab heading="FrontEnd Test's">
+      <div
+        class="container"
+        ng-include="'app/modules/pages/about/templates/tests_unit.html'"></div>
+      <div
+        class="container"
+        ng-include="'app/modules/pages/about/templates/tests_e2e.html'"></div>
+    </tab>
+    <tab heading="BackEnd">
+      <div
+        class="container"
+        ng-include="'app/modules/pages/about/templates/backend.html'"></div>
+    </tab>
+  </tabset>
+</div>
+<!-- @end: tabs -->
+
+</div>

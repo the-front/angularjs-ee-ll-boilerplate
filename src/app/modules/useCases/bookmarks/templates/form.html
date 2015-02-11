@@ -1,0 +1,111 @@
+<div class="container">
+
+  <div class="row"><h4>{{vm.title}}</h4></div>
+
+  <div class="row"><hr></div>
+
+  <div class="row">
+
+<div class="container">
+
+  <!-- @begin: bookmarkForm -->
+  <form role="form" name="bookmarkForm">
+
+    <!-- @begin: name -->
+    <div class="row" ng-class="{'has-error': bookmarkForm.name.$invalid}">
+      <div class="col-md-1">
+        <i ng-if="bookmarkForm.name.$error.required"
+          class="glyphicon glyphicon-pencil"></i>
+        <label for="nameInput">Name</label>
+      </div>
+      <div class="col-md-4">
+        <input
+          type="text"
+          class="form-control error" id="nameInput"
+          name="name"
+          ng-model="vm.bookmark.name"
+          fend-focus="focusBookmarkNameInput"
+          required>
+      </div>
+    </div>
+    <!-- @end: name -->
+
+    <div class="row">&nbsp;</div>
+
+    <!-- @begin: url -->
+    <div class="row" ng-class="{'has-error': bookmarkForm.url.$invalid}">
+      <div class="col-md-1">
+        <i ng-if="bookmarkForm.url.$error.required"
+          class="glyphicon glyphicon-pencil"></i>
+        <label for="urlInput">URL</label>
+      </div>
+      <div class="col-md-4">
+        <input
+          type="url"
+          class="form-control" id="urlInput"
+          name="url"
+          ng-model="vm.bookmark.url"
+          required>
+      </div>
+    </div>
+    <!-- @end: url -->
+
+    <div class="row">&nbsp;</div>
+
+    <!-- @begin: description -->
+    <div class="row">
+      <label class="col-md-5" for="descriptionArea">Description</label>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <textarea
+          class="form-control" id="descriptionArea"
+          name="description"
+          ng-model="vm.bookmark.description"></textarea>
+      </div>
+    </div>
+    <!-- @end: description -->
+
+    <!-- @begin: buttons -->
+    <div class="row" ng-if="!vm.showConfirm">&nbsp;</div>
+
+    <div class="row" ng-if="!vm.showConfirm">
+      <div class="col-md-5">
+        <a href="#bookmarks" class="btn" id="cancelLinkBtn">Cancel</a>
+        <button
+          id="saveBtn"
+          ng-click="vm.save()"
+          ng-disabled="vm.isClean() || bookmarkForm.$invalid"
+          class="btn btn-primary">Save</button>
+        <button
+          id="deleteConfirmBtn"
+          ng-click="vm.remove()"
+          ng-if="vm.bookmark.id"
+          class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+    <!-- @end: buttons -->
+
+    <!-- @begin: confirm -->
+    <div class="bs-callout bs-callout-danger" ng-if="vm.showConfirm">
+      <h4>Confirm</h4>
+      <p>Delete <code>{{vm.bookmark.name}}</code> bookmark?</p>
+      <button
+        id="deleteBtn"
+        ng-click="vm.destroy()"
+        class="btn btn-danger">Delete</button>
+      <button
+        id="cancelBtn"
+        ng-click="vm.cancelRemove()"
+        class="btn btn-default">Cancel</button>
+    </div>
+    <!-- @end: confirm -->
+
+  </form>
+  <!-- @end: bookmarkForm -->
+
+</div>
+
+  </div>
+
+</div>
