@@ -6,7 +6,7 @@ This boilerplate (seed project, starting project) helps you build large scale [A
 
 > **Status:** early stage
 
-<-- 
+<!-- 
 
 --
 
