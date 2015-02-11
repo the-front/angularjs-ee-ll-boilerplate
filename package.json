@@ -2,7 +2,7 @@
   "name": "angularjs-ee-ll-boilerplate",
   "version": "0.0.1",
   "private": true,
-  "description": "angularjs enterprise edition lazy load boilerplate",
+  "description": "angularjs enterprise edition load modules on demand (lazy load) boilerplate",
   "keywords": [
     "angular.js",
     "javascript",
