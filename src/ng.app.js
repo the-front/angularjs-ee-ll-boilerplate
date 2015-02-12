@@ -1,7 +1,14 @@
 define(function(require) {
   'use strict';
 
+  console.log( window.location );
+
   var angular = require('angular');
+
+  window.ngee = {
+    oldLocation: angular.copy( window.location )
+  };
+  console.log( ngee.oldLocation );
 
   angular.element(document).ready(startAngularApp);
 

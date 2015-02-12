@@ -7,11 +7,13 @@ define(function(require) {
 
   //---
 
-  MainCtrl.$inject = ['ProgressConfig', 'MenuConfig'];
+  // MainCtrl.$inject = ['ProgressConfig', 'MenuConfig'];
 
-  function MainCtrl(progressConfig, menu) {
+  // function MainCtrl(progressConfig, menu) {
+  function MainCtrl() {
     var vm = this;
 
+    /*
     //--- @begin: loading progressbar config
     progressConfig.eventListeners();
     progressConfig.color('#428bca');
@@ -29,6 +31,7 @@ define(function(require) {
     menu.addMenuItem('About', 'about');
     menu.addMenuItem('Help', 'help', 'right');
     //--- @end: menu items
+    */
 
   }
 

@@ -6,7 +6,7 @@ describe('Testing Home Controller', function() {
   beforeEach(function() {
 
     // load the module
-    module('home');
+    module('core.home');
 
     // inject dependencies
     inject(function($controller) {

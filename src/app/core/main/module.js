@@ -10,7 +10,7 @@ define(function(require) {
   return angular.module(
 
     // module name
-    'main',
+    'core.main',
 
     // module dependencies
     [
@@ -24,11 +24,11 @@ define(function(require) {
 
       require('app/core/home/package').name,
 
-      require('app/modules/pages/about/package').name,
+      // require('app/modules/pages/about/package').name,
 
-      require('app/modules/pages/help/package').name,
+      // require('app/modules/pages/help/package').name,
 
-      require('app/modules/useCases/bookmarks/package').name,
+      // require('app/modules/useCases/bookmarks/package').name,
 
 
       // TODO: add here module to load

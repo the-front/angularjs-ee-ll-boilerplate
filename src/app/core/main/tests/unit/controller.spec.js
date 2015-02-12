@@ -6,7 +6,7 @@ describe('Testing Main Controller', function() {
   beforeEach(function() {
 
     // load the module
-    module('main');
+    module('core.main');
 
     // inject dependencies
     inject(function($controller) {

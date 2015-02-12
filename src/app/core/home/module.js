@@ -10,7 +10,7 @@ define(function(require) {
   // angular module definition
   return angular.module(
     // module name
-    'home',
+    'core.home',
 
     // module dependencies
     [

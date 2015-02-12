@@ -6,7 +6,7 @@ describe('Angular.js \'main\' Module', function() {
   beforeEach(function() {
 
     // load the module
-    module = angular.module('main');
+    module = angular.module('core.main');
 
   });
 
@@ -39,11 +39,14 @@ describe('Angular.js \'main\' Module', function() {
       'fend.navbar',
 
       'home',
+
+      /* TODO: review
       'about',
 
       'bookmarks',
 
       'help'
+      */
     ];
 
     mainDeps.forEach(function( depName ) {

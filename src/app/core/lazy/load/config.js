@@ -18,8 +18,6 @@ define(function(require) {
         require('app/core/main/package').name,
 
         // TODO: review
-        // require('app/core/page/package').name,
-        // require('app/core/404/package').name
 
       ],
       asyncLoader: require

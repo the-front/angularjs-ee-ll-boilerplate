@@ -6,7 +6,7 @@ describe('Angular.js \'home\' Module', function() {
   beforeEach(function() {
 
     // load the module
-    module = angular.module('home');
+    module = angular.module('core.home');
 
   });
 
