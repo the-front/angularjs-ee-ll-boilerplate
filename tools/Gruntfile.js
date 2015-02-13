@@ -151,8 +151,8 @@ module.exports = function(grunt) {
     // @end: dev with browser sync
 
     // @begin: dev alias
-  grunt.registerTask('dev', ['dev:livereload']);
-  grunt.registerTask('dev:proxy', ['dev:livereload:proxy']);
+  grunt.registerTask('dev', ['dev:sync']);
+  grunt.registerTask('dev:proxy', ['dev:sync:proxy']);
     // @end: dev alias
   // @end: dev tasks
 
