@@ -28,6 +28,7 @@ grunt.config('copy', {
         cwd: '<%= project.paths.src %>/',
         src: [
           '**/*.js',
+          '!**/package.unit.js',
           '!**/tests/**/*',
           '!vendor/**/*',
           '!require.unit.load.js'
@@ -76,6 +77,7 @@ grunt.config('copy', {
         cwd: '<%= project.paths.src %>/',
         src: [
           '**/*.js',
+          '!**/package.unit.js',
           '!**/tests/**/*',
           '!require.config.js',
           '!require.unit.load.js'

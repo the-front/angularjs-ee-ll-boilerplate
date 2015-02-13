@@ -24,7 +24,11 @@ grunt.config('clean', {
 
   distUnusedFiles: {
     options: { force: true },
-    src: ['<%= project.paths.dist %>/ng.app.js']
+    src: [
+      '<%= project.paths.dist %>/build.txt',
+      '<%= project.paths.dist %>/ng.app.js',
+      '<%= project.paths.dist %>/require.build.config.js'
+    ]
   }
 
 });

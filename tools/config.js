@@ -3,6 +3,8 @@ module.exports = function() {
 
   //----------------------------------------------------------------------------
 
+  var getIpAddress = require('./helpers/lib/localip');
+
   var karma = require('./config.karma');
 
   //----------------------------------------------------------------------------
@@ -22,8 +24,31 @@ module.exports = function() {
 
   var frontend = {
 
+    webhost: getIpAddress(),
+
     webserver: 1337,
-    livereload: 9337 // default: 35729
+    livereload: 9337, // default: 35729
+
+    requirejs: {
+      findModules: {
+        source: paths.src + '/app/modules',
+        fileMatch: /package\.js$/,
+        removeBase: '../src/',
+        mainModule: 'ng.app',
+        excludeModule: 'require.build.config',
+        ignoreMatch   : /lazy\/load|mock|tests\/unit/,
+      }
+    },
+
+    html2js: {
+      source        : paths.src + '/app',
+      destination   : paths.build,
+      fileMatch     : /package\.js$/,
+      ignoreMatch   : /lazy\/load|mock|tests\/unit/,
+      // ignorePath    : 'tests/unit',
+      // ignorePath    : '!',
+      removeBase    : paths.src + '/app'
+    }
 
   }; // @end: frontend
 

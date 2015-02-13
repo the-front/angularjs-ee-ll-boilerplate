@@ -43,7 +43,7 @@ grunt.config('connect', {
       base: '<%= project.paths.build %>',
       hostname: '*',
       livereload: '<%= project.frontend.port.livereload %>',
-      open: 'http://localhost:<%= project.frontend.port.webserver %>'
+      open: 'http://<%= project.frontend.host %>:<%= project.frontend.port.webserver %>'
     }
   },
 
@@ -53,9 +53,22 @@ grunt.config('connect', {
       base: '<%= project.paths.build %>',
       hostname: '*',
       livereload: '<%= project.frontend.port.livereload %>',
-      open: 'http://localhost:<%= project.frontend.port.webserver %>',
+      open: 'http://<%= project.frontend.host %>:<%= project.frontend.port.webserver %>',
 
       middleware: '<%= connect.middleware %>'
+    }
+  },
+
+  //---
+
+  dev: {
+    options: {
+      port: '<%= project.frontend.port.webserver %>',
+      base: '<%= project.paths.build %>',
+      hostname: '*',
+      keepalive: true,
+      livereload: '<%= project.frontend.port.livereload %>',
+      open: 'http://<%= project.frontend.host %>:<%= project.frontend.port.webserver %>'
     }
   },
 
@@ -67,7 +80,7 @@ grunt.config('connect', {
       base: '<%= project.paths.dist %>',
       hostname: '*',
       keepalive: true,
-      open: 'http://localhost:<%= project.frontend.port.webserver %>'
+      open: 'http://<%= project.frontend.host %>:<%= project.frontend.port.webserver %>'
     }
   },
 
@@ -77,7 +90,7 @@ grunt.config('connect', {
       base: '<%= project.paths.dist %>',
       hostname: '*',
       keepalive: true,
-      open: 'http://localhost:<%= project.frontend.port.webserver %>',
+      open: 'http://<%= project.frontend.host %>:<%= project.frontend.port.webserver %>',
 
       middleware: '<%= connect.middleware %>'
     }

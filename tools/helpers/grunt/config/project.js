@@ -11,8 +11,12 @@ grunt.config('project', {
   require: {
     name: 'ng.app',
     config: '<%= project.paths.src %>/require.config.js',
-    build: '<%= project.paths.build %>/require.build.config.js'
+    build: '<%= project.paths.build %>/require.build.config.js',
+
+    findModules: config.frontend.requirejs.findModules
   },
+
+  html2js: config.frontend.html2js,
 
   reports: {
     port: {
@@ -22,6 +26,7 @@ grunt.config('project', {
   },
 
   frontend: {
+    host: config.frontend.webhost,
     port: {
       webserver: config.frontend.webserver,
       livereload: config.frontend.livereload // default: 35729

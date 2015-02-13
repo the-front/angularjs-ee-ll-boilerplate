@@ -53,10 +53,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build:prod', [
     'start',
-    'karma:ci',
+    // 'karma:ci',
     'copy:prod_jstobuild',
-    'html2js:prod',
+    'templatesCache',
     'rewriteRequireConfig',
+    'configRequire',
     'requirejs',
     'clean:build',
     'copy:prod_todist',
