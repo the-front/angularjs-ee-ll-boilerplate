@@ -16,8 +16,6 @@ module.exports = function(grunt) {
     requireFindModules(project.require.findModules)
       .then(function modules( modulesArray ) {
 
-        console.log( modulesArray );
-
         configureRequirejsTask( modulesArray );
 
         grunt.log.writeln('...done');
