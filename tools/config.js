@@ -3,7 +3,11 @@ module.exports = function() {
 
   //----------------------------------------------------------------------------
 
+  var path = require('path');
+
   var getIpAddress = require('./helpers/lib/localip');
+
+  var oscheck = require('./helpers/lib/oscheck');
 
   var karma = require('./config.karma');
 
@@ -30,17 +34,41 @@ module.exports = function() {
     livereload: 9337, // default: 35729
 
     requirejs: {
-      findModules: {
-        source: paths.src + '/app/modules',
-        fileMatch: /package\.js$/,
-        removeBase: '../src/',
-        mainModule: 'ng.app',
-        excludeModule: 'require.build.config',
-        ignoreMatch   : /lazy\/load|mock|tests\/unit/,
-      }
+      findModules: defineFindModules()
     },
 
-    html2js: {
+    html2js: defineHtml2js()
+
+  }; // @end: frontend
+
+  function defineFindModules() {
+    return oscheck.isWin ? {
+        source        : path.resolve(path.join(paths.src, 'app', 'modules')),
+        fileMatch     : /package\.js$/,
+        removeBase    : path.resolve(path.join('..', 'src')),
+        mainModule    : 'ng.app',
+        excludeModule : 'require.build.config',
+        ignoreMatch   : /lazy\\load|mock|tests\\unit/
+      } : {
+        source        : paths.src + '/app/modules',
+        fileMatch     : /package\.js$/,
+        removeBase    : '../src/',
+        mainModule    : 'ng.app',
+        excludeModule : 'require.build.config',
+        ignoreMatch   : /lazy\/load|mock|tests\/unit/
+      };
+  }
+
+  function defineHtml2js() {
+    return oscheck.isWin ? {
+      source      : path.resolve(path.join(paths.src, 'app')),
+      destination : paths.build,
+      fileMatch   : /package\.js$/,
+      ignoreMatch : /lazy\\load|mock|tests\\unit/,
+      // ignorePath  : 'tests/unit',
+      // ignorePath  : '!',
+      removeBase  : path.resolve(path.join(paths.src, 'app'))
+    } : {
       source        : paths.src + '/app',
       destination   : paths.build,
       fileMatch     : /package\.js$/,
@@ -48,9 +76,8 @@ module.exports = function() {
       // ignorePath    : 'tests/unit',
       // ignorePath    : '!',
       removeBase    : paths.src + '/app'
-    }
-
-  }; // @end: frontend
+    };
+  }
 
   //----------------------------------------------------------------------------
 
