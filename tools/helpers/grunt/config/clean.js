@@ -27,7 +27,10 @@ grunt.config('clean', {
     src: [
       '<%= project.paths.dist %>/build.txt',
       '<%= project.paths.dist %>/ng.app.js',
-      '<%= project.paths.dist %>/require.build.config.js'
+      '<%= project.paths.dist %>/require.build.config.js',
+
+      // TODO: review
+      '<%= project.paths.dist %>/app/modules/**/mock/'
     ]
   }
 
