@@ -9,7 +9,8 @@ module.exports = function(gulp, $) {
   ]));
 
   gulp.task('clean:dist:unused-files', $.del.bind(null, [
-    $.config.paths.dist + '/{build.txt,ng.app.js}'
+    $.config.paths.dist + '/{build.txt,ng.app.js}',
+    $.config.paths.dist + '/app/*{,*/**}/mock/'
   ]));
 
   gulp.task('clean', ['clean:dist', 'clean:build']);
