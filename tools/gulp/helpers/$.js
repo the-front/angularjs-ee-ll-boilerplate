@@ -37,6 +37,8 @@ $.localip = $.rootRequire('tools/lib/localip');
 
 $.requirejs = $.rootRequire('tools/lib/requirejs');
 
+$.html2js = $.rootRequire('tools/lib/html2js');
+
 //---
 
 $.args = require('yargs').argv;

@@ -1,55 +1,40 @@
 module.exports = function(gulp, $) {
 
-  var TEMPLATE_HEADER = [
-    'define(function(require) {',
-    '  \'use strict\';',
-    '',
-    '  var module = require(\'./module\');',
-    '',
-    '  module.run(runner);',
-    '',
-    '  //---',
-    '',
-    '  runner.$inject = [\'$templateCache\'];',
-    '',
-    '  function runner($templateCache) {',
-    ''
-  ].join('\n');
-
-  var TEMPLATE_FOOTER = [
-    '',
-    '  }',
-    '});'
-  ].join('\n');
-
-  var html2jsOpts = {
-    templateHeader : TEMPLATE_HEADER,
-    templateFooter : TEMPLATE_FOOTER,
-    base           : function(file) {
-      return file.path.replace( $.path.resolve($.config.paths.src) + $.path.sep , '' );
-    }
-  };
-
-  //----------------------------------------------------------------------------
-
   gulp.task('html2js', function() {
-    return gulp.src( $.config.html2js.src )
-      .pipe( $.htmlmin( $.config.htmlmin ) )
-      .pipe(
-        $.angularTemplatecache(
-          $.config.html2js.filename,
-          html2jsOpts
-        )
-      )
-      .pipe( gulp.dest( $.config.html2js.dest ) );
-  });
 
-  gulp.task('update:main:package.js', function() {
-    return gulp.src( $.config.html2js.dest + '/package.js' )
-      .pipe( $.injectString.before(
-        'return ', 'require(\'./' + $.config.html2js.filename + '\');\n  '
-      ) )
-      .pipe( gulp.dest( $.config.html2js.dest ) );
+    var srcPath = $.path.resolve( $.config.paths.src ) + $.path.sep;
+
+    var locations = [];
+
+    return gulp.src([
+        $.config.paths.src + '/app/{core,modules}/**/package.js',
+        '!' + $.config.paths.src + '/app/{core,modules}/*{,*/**}/{tests,mock}/**/*.js'
+      ], { read: false })
+      .pipe( $.through2.obj(
+        function contents( file, enc, next ) {
+
+          locations.push(
+            file.path.replace(srcPath, '').replace('package.js','')
+          );
+
+          next();
+        },
+        function end( done ) {
+
+          $.html2js
+            .makeCache({
+              source: $.config.paths.src,
+              destination: $.config.paths.build,
+              locations: $.html2js.checkLocations( locations )
+            })
+            .then(function(results) {
+              // console.log( results );
+              done();
+            });
+
+        }
+      ) );
+
   });
 
 };

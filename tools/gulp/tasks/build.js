@@ -4,8 +4,7 @@ module.exports = function(gulp, $) {
 
     $.runSequence(
       'copy:js2build',
-      'html2js', // TODO: review
-      'update:main:package.js', // TODO: needed?
+      'html2js',
       'requirejs',
       'build:concat:js',
       'clean:build',
