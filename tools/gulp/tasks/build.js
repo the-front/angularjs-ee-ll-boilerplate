@@ -1,0 +1,55 @@
+module.exports = function(gulp, $) {
+
+  gulp.task('build', function( done ) {
+
+    $.runSequence(
+      [
+        'copy:js2build',
+        'styles',
+        'build:min:index.html',
+        'copy:vendor2dist',
+        'build:min:images',
+        'build:uglify:ie-fallback'
+      ],
+      'html2js',
+      'update:main:package.js',
+      'requirejs',
+      'build:concat:js',
+      'clean:build',
+      done
+    );
+
+  });
+
+  gulp.task('build:min:index.html', function() {
+    return gulp.src( $.config.html.index )
+      .pipe( $.htmlmin( $.config.htmlmin ) )
+      .pipe( gulp.dest( $.config.paths.dist ) );
+  });
+
+  gulp.task('build:min:images', function() {
+    return gulp.src( $.config.paths.src + '/shared/img/**/*' )
+      .pipe( $.imagemin({
+        progressive: true,
+        interlaced: true
+      }) )
+      .pipe( gulp.dest( $.config.paths.dist + '/shared/img' ) );
+  });
+
+  gulp.task('build:concat:js', function() {
+    return gulp.src([
+        $.config.paths.build + '/' + $.config.require.name + '.js',
+        $.config.require.config
+      ])
+      .pipe( $.concat( 'require.config.js' ) )
+      .pipe( $.uglify() )
+      .pipe( gulp.dest( $.config.paths.dist ) );
+  });
+
+  gulp.task('build:uglify:ie-fallback', function() {
+    return gulp.src( $.config.paths.src + '/shared/fallback/*.js' )
+      .pipe( $.uglify() )
+      .pipe( gulp.dest( $.config.paths.dist + '/shared/fallback' ) );
+  });
+
+};
