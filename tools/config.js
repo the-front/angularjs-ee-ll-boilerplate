@@ -100,22 +100,12 @@ module.exports = (function() {
   config.htmlmin = {
     collapseBooleanAttributes: true,
     collapseWhitespace: true,
-    removeAttributeQuotes: true, // TODO: review
+    removeAttributeQuotes: true,
     removeComments: true,
     removeEmptyAttributes: true,
     removeRedundantAttributes: true,
     removeScriptTypeAttributes: true,
     removeStyleLinkTypeAttributes: true
-  };
-
-  config.html2js = {
-    filename: 'templatesCache.js',
-    moduleName: 'templatesCache',
-    src: [
-      config.paths.src + '/app/**/*.html',
-      config.paths.src + '/shared/**/*.html'
-    ],
-    dest: path.join( config.paths.build, 'app', 'core', 'main' )
   };
 
   //---
