@@ -3,19 +3,19 @@ module.exports = function(gulp, $) {
   gulp.task('build', function( done ) {
 
     $.runSequence(
+      'copy:js2build',
+      'html2js', // TODO: review
+      'update:main:package.js', // TODO: needed?
+      'requirejs',
+      'build:concat:js',
+      'clean:build',
       [
-        'copy:js2build',
         'styles',
         'build:min:index.html',
         'copy:vendor2dist',
         'build:min:images',
-        'build:uglify:ie-fallback'
+        'clean:dist:unused-files'
       ],
-      'html2js',
-      'update:main:package.js',
-      'requirejs',
-      'build:concat:js',
-      'clean:build',
       done
     );
 
@@ -38,18 +38,12 @@ module.exports = function(gulp, $) {
 
   gulp.task('build:concat:js', function() {
     return gulp.src([
-        $.config.paths.build + '/' + $.config.require.name + '.js',
+        $.config.paths.dist + '/' + $.config.require.mainModule + '.js',
         $.config.require.config
       ])
       .pipe( $.concat( 'require.config.js' ) )
       .pipe( $.uglify() )
       .pipe( gulp.dest( $.config.paths.dist ) );
-  });
-
-  gulp.task('build:uglify:ie-fallback', function() {
-    return gulp.src( $.config.paths.src + '/shared/fallback/*.js' )
-      .pipe( $.uglify() )
-      .pipe( gulp.dest( $.config.paths.dist + '/shared/fallback' ) );
   });
 
 };

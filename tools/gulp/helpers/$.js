@@ -25,6 +25,8 @@ $.reload          = $.browserSync.reload;
 
 $.open            = require('open');
 
+$.through2        = require('through2');
+
   //--- local modules
 
 $.pkg = $.rootRequire('package.json');

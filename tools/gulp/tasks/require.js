@@ -16,12 +16,15 @@ module.exports = function(gulp, $) {
 
   // https://github.com/kvindasAB/angular-enterprise-kickstart/blob/master/Gruntfile.js#L303
   var requireBuildConfig = {
-    baseUrl: $.config.paths.build,
 
     mainConfigFile: $.config.require.build,
 
-    name: $.config.require.name,
-    out: $.path.join( $.config.paths.build, $.config.require.name + '.js' ),
+    removeCombined: true,
+    findNestedDependencies: true,
+
+    baseUrl: './',
+    appDir: $.config.paths.build, // source dir
+    dir: $.config.paths.dist, // ouput dir
 
     useStrict: true,
     wrap: {
@@ -47,8 +50,32 @@ module.exports = function(gulp, $) {
 
   //----------------------------------------------------------------------------
 
-  gulp.task('requirejs', ['requirejs:rewrite-config'], function( done ) {
-    $.requirejs.builder( requireBuildConfig, done, $.is.debug, $.log );
+  gulp.task('requirejs', ['requirejs:rewrite-config'], function() {
+
+    var srcPath = $.path.resolve( $.config.paths.src ) + $.path.sep;
+
+    var modules = [{name: $.config.require.mainModule}];
+
+    return gulp.src([
+        $.config.paths.src + '/app/modules/**/package.js',
+        '!' + $.config.paths.src + '/app/modules/*{,*/**}/{tests,mock}/**/*.js'
+      ], { read: false })
+      .pipe( $.through2.obj(
+        function contents( file, enc, next ) {
+
+          modules.push({
+            name: file.path.replace(srcPath, '').replace('.js',''),
+            exclude: [ $.config.require.excludeModule ]
+          });
+
+          next();
+        },
+        function end( done ) {
+          requireBuildConfig.modules = modules;
+          $.requirejs.builder( requireBuildConfig, done, $.is.debug, $.log );
+        }
+      ) );
+
   });
 
   //----------------------------------------------------------------------------

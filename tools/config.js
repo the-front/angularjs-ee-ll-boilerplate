@@ -54,6 +54,7 @@ module.exports = (function() {
       copy2build : [
         config.paths.src + '/**/*.js',
         '!' + config.paths.src + '/require.unit.load.js',
+        '!' + config.paths.src + '/**/package.unit.js',
         '!' + config.paths.src + '/vendor/**/*.js',
         '!' + config.paths.src + '/{app,shared}/*{,*/**}/tests/**/*.js'
       ]
@@ -114,13 +115,14 @@ module.exports = (function() {
       config.paths.src + '/app/**/*.html',
       config.paths.src + '/shared/**/*.html'
     ],
-    dest: path.join( config.paths.build, 'app', 'main' )
+    dest: path.join( config.paths.build, 'app', 'core', 'main' )
   };
 
   //---
 
   config.require = {
-    name: 'ng.app',
+    mainModule: 'ng.app',
+    excludeModule: 'require.config.js',
     config: path.join(config.paths.src, 'require.config.js'),
     build: path.join(config.paths.build, 'require.config.js')
   };

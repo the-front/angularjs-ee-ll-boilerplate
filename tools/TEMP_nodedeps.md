@@ -4,6 +4,8 @@ npm install \
   requirejs \
   escodegen \
   esprima \
+  q \
+  q-io \
   open \
   browser-sync \
   del \

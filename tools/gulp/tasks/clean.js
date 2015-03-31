@@ -12,6 +12,12 @@ module.exports = function(gulp, $) {
     ], done);
   });
 
+  gulp.task('clean:dist:unused-files', function( done ) {
+    $.del([
+      $.config.paths.dist + '/{build.txt,ng.app.js}'
+    ], done);
+  });
+
   gulp.task('clean', ['clean:dist', 'clean:build']);
 
 };
