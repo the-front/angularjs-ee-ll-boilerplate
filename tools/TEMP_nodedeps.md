@@ -24,6 +24,7 @@ npm install \
   gulp-autoprefixer \
   gulp-bump \
   gulp-concat \
+  gulp-cached \
   gulp-filter \
   gulp-rename \
   gulp-sass \
