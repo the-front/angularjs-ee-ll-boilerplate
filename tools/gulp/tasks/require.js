@@ -64,7 +64,7 @@ module.exports = function(gulp, $) {
         function contents( file, enc, next ) {
 
           modules.push({
-            name: file.path.replace(srcPath, '').replace('.js',''),
+            name: file.path.replace(srcPath, '').replace('.js','').replace(/\\/g, '/'),
             exclude: [ $.config.require.excludeModule ]
           });
 
