@@ -7,7 +7,7 @@ define(function(require) {
   // TODO: review
   console.log( window.location );
   window.ngee = {
-    oldLocation: angular.copy( window.location )
+    oldLocation: JSON.parse( JSON.stringify(window.location) )
   };
   console.log( ngee.oldLocation );
 
