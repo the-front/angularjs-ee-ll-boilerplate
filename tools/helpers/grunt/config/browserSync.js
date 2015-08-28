@@ -100,7 +100,7 @@ grunt.config('browserSync', {
 
     }
 
-  },
+  }
 
 
 });
