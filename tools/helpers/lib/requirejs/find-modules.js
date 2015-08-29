@@ -1,5 +1,6 @@
 var path  = require('path'),
     Q     = require('q'),
+    os    = require('../oscheck'),
     fs    = require('q-io/fs');
 
 // sample
@@ -58,6 +59,10 @@ function processDirectory( options ) {
 
   function addModule(filename) {
     var name = filename.replace( '.js', '' );
+    if( os.isWin ) {
+      name = name.split('\\').join('/');
+      name = name.replace(/\//i, '');
+    }
     return {
       name: name,
       exclude: [excludeModule]
