@@ -1,6 +1,6 @@
 {
   "name": "angularjs-ee-ll-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "description": "angularjs enterprise edition load modules on demand (lazy load) boilerplate",
   "keywords": [
@@ -19,9 +19,12 @@
   "bugs": {
     "url": "https://github.com/the-front/angularjs-ee-ll-boilerplate/issues"
   },
-  "contributors": [
+  "author": "Erko Bridee de Almeida Cabrera <erko.bridee@gmail.com>",
+  "collaborators": [
+    "Arlindo Pereira Jr. <nighto@nighto.net>",
     "Erko Bridee de Almeida Cabrera <erko.bridee@gmail.com>",
     "Janderson Fernandes Cardoso <jandersonfc.com@gmail.com>",
+    "Jota Feldmann <eusoujf@hotmail.com>",
     "Mario de Souza Junior <mrdesouzajunior@gmail.com>",
     "Vinicius Camara de Oliveira <viniciuscamara@gmail.com>"
   ],
